@@ -1,0 +1,22 @@
+[
+  {
+    "id": "tenant1",
+    "username": "your_tiktok_username1",
+    "password": "your_tiktok_password1",
+    "proxy": "socks5://proxy1.example.com:1080",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    "width": "1920",
+    "height": "1080",
+    "status": "active"
+  },
+  {
+    "id": "tenant2",
+    "username": "your_tiktok_username2",
+    "password": "your_tiktok_password2",
+    "proxy": "socks5://proxy2.example.com:1080",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Safari/605.1.15",
+    "width": "1280",
+    "height": "720",
+    "status": "active"
+  }
+]

@@ -1,0 +1,57 @@
+services:
+  - type: postgres
+    name: n8n-postgres
+    region: oregon
+    plan: free
+    databaseName: n8n_db
+    user: n8n_user
+    ipAllowList: []
+  - type: redis
+    name: n8n-redis
+    region: oregon
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+  - type: web
+    name: n8n-tiktok-system
+    env: docker
+    dockerComposePath: ./docker-compose.yml
+    region: oregon
+    plan: free
+    autoDeploy: false
+    healthcheckPath: /healthz
+    healthcheckTimeout: 60
+    envVars:
+      - key: N8N_HOST
+        value: ${RENDER_EXTERNAL_HOSTNAME}
+      - key: N8N_PORT
+        value: 5678
+      - key: NODE_ENV
+        value: production
+      - key: WEBHOOK_URL
+        value: https://${RENDER_EXTERNAL_HOSTNAME}
+      - key: GENERIC_TIMEZONE
+        value: Asia/Shanghai
+      - key: POSTGRES_HOST
+        fromDatabase:
+          name: n8n-postgres
+          property: host
+      - key: POSTGRES_PORT
+        fromDatabase:
+          name: n8n-postgres
+          property: port
+      - key: POSTGRES_DB
+        fromDatabase:
+          name: n8n-postgres
+          property: database
+      - key: POSTGRES_USER
+        fromDatabase:
+          name: n8n-postgres
+          property: user
+      - key: POSTGRES_PASSWORD
+        fromDatabase:
+          name: n8n-postgres
+          property: password
+      - key: REDIS_URL
+        fromService:
+          name: n8n-redis
+          property: connectionString
